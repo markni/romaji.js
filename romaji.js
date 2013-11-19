@@ -3,9 +3,9 @@
 
 (function(){
 
-    var gojuon = {};
+    var romaji = {};
 
-    gojuon.convert = function (syllabary) {
+    romaji.convert = function (syllabary) {
 
         var replaceAll = function (find, replace, str) {
 
@@ -343,7 +343,7 @@
 
 
     if (exports){
-        exports.convert = gojuon.convert;
+        exports.convert = romaji.convert;
     }
 
 
