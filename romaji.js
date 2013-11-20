@@ -12,9 +12,99 @@
             return str.replace(new RegExp(find, 'g'), replace);
         }
 
+        var longVowelsReplacer = function(match,p1,p2,offset,string)
+        {
+            //could be easier if just hardcoded into dictionary....
+            var new_spelling;
+            if (dics.katakana[p1]){
+                new_spelling = dics.katakana[p1];
+            }
+            else if (p1.length>1 && dics.katakana[p1.charAt(1)]){
+                new_spelling = dics.katakana[p1.charAt(1)];
+            }
+            if(new_spelling){
+                for (var key in longvowels){
+                    new_spelling = new_spelling.replace(key,longvowels[key]);
+                }
+                return new_spelling;
+
+            }
+            else{
+                return p1+p2;
+            }
+        }
+
         var dics = {};
 
-        dics.hiragana_basic = {
+        dics.hiragana = {
+            //combined first
+            "きゃ": "kya",
+            "しゃ": "sha",
+            "ちゃ": "cha",
+            "にゃ": "nya",
+            "ひゃ": "hya",
+            "みゃ": "mya",
+            "りゃ": "rya",
+            "ぎゃ": "gya",
+            "じゃ": "ja",
+            "びゃ": "bya",
+            "ぴゃ": "pya",
+
+            "きゅ": "kyu",
+            "しゅ": "shu",
+            "ちゅ": "chu",
+            "にゅ": "nyu",
+            "ひゅ": "hyu",
+            "みゅ": "myu",
+            "りゅ": "ryu",
+            "ぎゅ": "gyu",
+            "じゅ": "ju",
+            "びゅ": "byu",
+            "ぴゅ": "pyu",
+
+            "きょ": "kyo",
+            "しょ": "sho",
+            "ちょ": "cho",
+            "にょ": "nyo",
+            "ひょ": "hyo",
+            "みょ": "myo",
+            "りょ": "ryo",
+            "ぎょ": "gyo",
+            "じょ": "jo",
+            "びょ": "byo",
+            "ぴょ": "pyo",
+
+
+            "ふぁ": "fa",
+            "ふぃ": "fi",
+            "ふぇ": "fe",
+            "ふぉ": "fo",
+            "ふゅ": "fyu",
+
+            "うぃ": "wi",
+            "うぇ": "we",
+            "うぉ": "wo",
+
+            "ゔぁ": "va",
+            "ゔぃ": "vi",
+            "ゔぇ": "ve",
+            "ゔぉ": "vo",
+
+            "つぁ": "tsa",
+            "つぃ": "tsi",
+            "つぇ": "tse",
+            "つぉ": "tso",
+
+            "ちぇ": "che",
+            "しぇ": "she",
+            "じぇ": "je",
+            "てぃ": "ti",
+            "でぃ": "di",
+            "でゅ": "du",
+            "とぅ": "tu",
+
+            //basic
+
             "あ": "a",
             "か": "ka",
             "さ": "sa",
@@ -102,76 +192,75 @@
 
         }
 
-        dics.hiragana_advance = {
-            "きゃ": "kya",
-            "しゃ": "sha",
-            "ちゃ": "cha",
-            "にゃ": "nya",
-            "ひゃ": "hya",
-            "みゃ": "mya",
-            "りゃ": "rya",
-            "ぎゃ": "gya",
-            "じゃ": "ja",
-            "びゃ": "bya",
-            "ぴゃ": "pya",
+        dics.katakana = {
+            "キャ": "kya",
+            "シャ": "sha",
+            "チャ": "cha",
+            "ニャ": "nya",
+            "ヒャ": "hya",
+            "ミャ": "mya",
+            "リャ": "rya",
+            "ギャ": "gya",
+            "ジャ": "ja",
+            "ビャ": "bya",
+            "ピャ": "pya",
 
-            "きゅ": "kyu",
-            "しゅ": "shu",
-            "ちゅ": "chu",
-            "にゅ": "nyu",
-            "ひゅ": "hyu",
-            "みゅ": "myu",
-            "りゅ": "ryu",
-            "ぎゅ": "gyu",
-            "じゅ": "ju",
-            "びゅ": "byu",
-            "ぴゅ": "pyu",
+            "キュ": "kyu",
+            "シュ": "shu",
+            "チュ": "chu",
+            "ニュ": "nyu",
+            "ヒュ": "hyu",
+            "ミュ": "myu",
+            "リュ": "ryu",
+            "ギュ": "gyu",
+            "ジュ": "ju",
+            "ビュ": "byu",
+            "ピュ": "pyu",
 
-            "きょ": "kyo",
-            "しょ": "sho",
-            "ちょ": "cho",
-            "にょ": "nyo",
-            "ひょ": "hyo",
-            "みょ": "myo",
-            "りょ": "ryo",
-            "ぎょ": "gyo",
-            "じょ": "jo",
-            "びょ": "byo",
-            "ぴょ": "pyo",
+            "キョ": "kyo",
+            "ショ": "sho",
+            "チョ": "cho",
+            "ニョ": "nyo",
+            "ヒョ": "hyo",
+            "ミョ": "myo",
+            "リョ": "ryo",
+            "ギョ": "gyo",
+            "ジョ": "jo",
+            "ビョ": "byo",
+            "ピョ": "pyo",
 
+            "ファ": "fa",
+            "フィ": "fi",
+            "フェ": "fe",
+            "フォ": "fo",
+            "フュ": "fyu",
 
-            "ふぁ": "fa",
-            "ふぃ": "fi",
-            "ふぇ": "fe",
-            "ふぉ": "fo",
-            "ふゅ": "fyu",
+            "ウィ": "wi",
+            "ウェ": "we",
+            "ウォ": "wo",
 
-            "うぃ": "wi",
-            "うぇ": "we",
-            "うぉ": "wo",
+            "ヴァ": "va",
+            "ヴィ": "vi",
+            "ヴェ": "ve",
+            "ヴォ": "vo",
 
-            "ゔぁ": "va",
-            "ゔぃ": "vi",
-            "ゔぇ": "ve",
-            "ゔぉ": "vo",
+            "ツァ": "tsa",
+            "ツィ": "tsi",
+            "ツェ": "tse",
+            "ツォ": "tso",
 
-            "つぁ": "tsa",
-            "つぃ": "tsi",
-            "つぇ": "tse",
-            "つぉ": "tso",
-
-            "ちぇ": "che",
-            "しぇ": "she",
-            "じぇ": "je",
-            "てぃ": "ti",
-            "でぃ": "di",
-            "でゅ": "du",
-            "とぅ": "tu"
-
-        }
+            "チェ": "che",
+            "シェ": "she",
+            "ジェ": "je",
+            "ティ": "ti",
+            "ディ": "di",
+            "デュ": "du",
+            "トゥ": "tu",
 
 
-        dics.katakana_basic = {
+
+            //basic
+
             "ア": "a",
             "カ": "ka",
             "サ": "sa",
@@ -259,79 +348,28 @@
 
         }
 
-        dics.katakana_advance = {
-            "キャ": "kya",
-            "シャ": "sha",
-            "チャ": "cha",
-            "ニャ": "nya",
-            "ヒャ": "hya",
-            "ミャ": "mya",
-            "リャ": "rya",
-            "ギャ": "gya",
-            "ジャ": "ja",
-            "ビャ": "bya",
-            "ピャ": "pya",
 
-            "キュ": "kyu",
-            "シュ": "shu",
-            "チュ": "chu",
-            "ニュ": "nyu",
-            "ヒュ": "hyu",
-            "ミュ": "myu",
-            "リュ": "ryu",
-            "ギュ": "gyu",
-            "ジュ": "ju",
-            "ビュ": "byu",
-            "ピュ": "pyu",
-
-            "キョ": "kyo",
-            "ショ": "sho",
-            "チョ": "cho",
-            "ニョ": "nyo",
-            "ヒョ": "hyo",
-            "ミョ": "myo",
-            "リョ": "ryo",
-            "ギョ": "gyo",
-            "ジョ": "jo",
-            "ビョ": "byo",
-            "ピョ": "pyo",
-
-            "ファ": "fa",
-            "フィ": "fi",
-            "フェ": "fe",
-            "フォ": "fo",
-            "フュ": "fyu",
-
-            "ウィ": "wi",
-            "ウェ": "we",
-            "ウォ": "wo",
-
-            "ヴァ": "va",
-            "ヴィ": "vi",
-            "ヴェ": "ve",
-            "ヴォ": "vo",
-
-            "ツァ": "tsa",
-            "ツィ": "tsi",
-            "ツェ": "tse",
-            "ツォ": "tso",
-
-            "チェ": "che",
-            "シェ": "she",
-            "ジェ": "je",
-            "ティ": "ti",
-            "ディ": "di",
-            "デュ": "du",
-            "トゥ": "tu"
-
+        var longvowels = {
+            'a':'ā',
+            'e':'ē',
+            'i':'ī',
+            'o':'ō',
+            'u':'ū'
         }
+
+
 
 
         var result = syllabary;
 
+
+
+        result = result.replace(/(.|..)(ー)/g,longVowelsReplacer);
+
         for (var index in dics){
             for (var s in dics[index]) {
                 result = replaceAll(s, dics[index][s], result);
+
             }
         }
 
@@ -345,6 +383,8 @@
     if (exports){
         exports.convert = romaji.convert;
     }
+
+
 
 
 
