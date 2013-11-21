@@ -32,7 +32,5 @@ describe('romaji.js', function(){
         })
     })
 
-
-
 })
 

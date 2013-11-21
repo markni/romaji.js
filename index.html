@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>romaji.js</title>
+</head>
+<body>
+
+<input type='text' id="text" value="ローマ">
+<button id="convert">convert()</button>
+
+<script src="romaji.js"></script>
+<script>
+    document.getElementById('convert').onclick = function (){
+             document.getElementById('text').value = romaji.convert(document.getElementById('text').value);
+
+    }
+
+</script>
+</body>
+</html>
