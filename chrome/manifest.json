@@ -1,0 +1,14 @@
+{
+    "name": "romaji.js plugin",
+    "description": "convert selected kana into romaji in context menu",
+    "version": "0.2.0",
+    "permissions": ["contextMenus"],
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["content_script.js"]
+    }],
+    "background": {
+        "scripts": ["romaji.js","plugin.js"]
+    },
+    "manifest_version": 2
+}
