@@ -2,36 +2,28 @@
 
 
 (function () {
+    var root = this;
 
-    var romaji = {};
+    var previousRomaji = root.romaji;
+
+    var romaji;
+
+    if (typeof exports !== 'undefined') {
+        romaji = exports;
+    } else {
+        romaji = root.romaji = {};
+    }
+
+    romaji.noConflict = function(){
+        root.romaji = previousRomaji;
+        return this;
+    }
+
+
 
     romaji.convert = function (syllabary) {
 
-        var replaceAll = function (find, replace, str) {
-
-            return str.replace(new RegExp(find, 'g'), replace);
-        }
-
-        var longVowelsReplacer = function (match, p1, p2, offset, string) {
-            //could be easier if just hardcoded into dictionary....
-            var new_spelling;
-            if (dics.katakana[p1]) {
-                new_spelling = dics.katakana[p1];
-            }
-            else if (p1.length > 1 && dics.katakana[p1.charAt(1)]) {
-                new_spelling = dics.katakana[p1.charAt(1)];
-            }
-            if (new_spelling) {
-                for (var key in longvowels) {
-                    new_spelling = new_spelling.replace(key, longvowels[key]);
-                }
-                return new_spelling;
-
-            }
-            else {
-                return p1 + p2;
-            }
-        }
+        var result = syllabary;
 
         var dics = {};
 
@@ -346,7 +338,6 @@
 
         }
 
-
         var longvowels = {
             'a': 'ā',
             'e': 'ē',
@@ -356,7 +347,32 @@
         }
 
 
-        var result = syllabary;
+        var replaceAll = function (find, replace, str) {
+
+            return str.replace(new RegExp(find, 'g'), replace);
+        }
+
+        var longVowelsReplacer = function (match, p1, p2, offset, string) {
+            //could be easier if just hardcoded into dictionary....
+            var new_spelling;
+            //ex. replace cha with chā
+            if (dics.katakana[p1]) {
+                new_spelling = dics.katakana[p1];
+            }
+            //ex. replace ra with rā
+            else if (p1.length > 1 && dics.katakana[p1.charAt(1)]) {
+                new_spelling = dics.katakana[p1.charAt(1)];
+            }
+            if (new_spelling) {
+                for (var key in longvowels) {
+                    new_spelling = new_spelling.replace(key, longvowels[key]);
+                }
+                return new_spelling;
+            }
+            else {
+                return p1 + p2;
+            }
+        }
 
 
         result = result.replace(/(.|..)(ー)/g, longVowelsReplacer);
@@ -374,9 +390,9 @@
     }
 
 
-    if (exports) {
-        exports.convert = romaji.convert;
-    }
+
+
+
 
 
 }).call(this);
