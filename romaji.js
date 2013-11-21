@@ -362,7 +362,7 @@
             }
             //ex. replace ra with rā
             else if (p1.length > 1 && dics.katakana[p1.charAt(1)]) {
-                new_spelling = dics.katakana[p1.charAt(1)];
+                new_spelling = p1.charAt(0) + dics.katakana[p1.charAt(1)];
             }
             if (new_spelling) {
                 for (var key in longvowels) {
@@ -375,8 +375,9 @@
             }
         }
 
-
+        //replace long vowels first
         result = result.replace(/(.|..)(ー)/g, longVowelsReplacer);
+
 
         for (var index in dics) {
             for (var s in dics[index]) {
