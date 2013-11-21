@@ -14,13 +14,12 @@
         romaji = root.romaji = {};
     }
 
-    romaji.version =  '0.2.0';
+    romaji.version = '0.2.0';
 
-    romaji.noConflict = function(){
+    romaji.noConflict = function () {
         root.romaji = previousRomaji;
         return this;
     }
-
 
 
     romaji.convert = function (syllabary) {
@@ -333,9 +332,9 @@
             "ボ": "bo",
             "ポ": "po",
 
-            "ャ": "ya",
-            "ュ": "yu",
-            "ョ": "yo"
+            "ャ": "ya", "ヤ": "ya",
+            "ュ": "yu", "ユ": "yu",
+            "ョ": "yo", "ヨ": "yo"
 
 
         }
@@ -390,11 +389,6 @@
         return result;
 
     }
-
-
-
-
-
 
 
 }).call(this);
