@@ -14,6 +14,8 @@
         romaji = root.romaji = {};
     }
 
+    romaji.version =  '0.2.0';
+
     romaji.noConflict = function(){
         root.romaji = previousRomaji;
         return this;
