@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 
-(function(){
+(function () {
 
     var romaji = {};
 
@@ -12,25 +12,24 @@
             return str.replace(new RegExp(find, 'g'), replace);
         }
 
-        var longVowelsReplacer = function(match,p1,p2,offset,string)
-        {
+        var longVowelsReplacer = function (match, p1, p2, offset, string) {
             //could be easier if just hardcoded into dictionary....
             var new_spelling;
-            if (dics.katakana[p1]){
+            if (dics.katakana[p1]) {
                 new_spelling = dics.katakana[p1];
             }
-            else if (p1.length>1 && dics.katakana[p1.charAt(1)]){
+            else if (p1.length > 1 && dics.katakana[p1.charAt(1)]) {
                 new_spelling = dics.katakana[p1.charAt(1)];
             }
-            if(new_spelling){
-                for (var key in longvowels){
-                    new_spelling = new_spelling.replace(key,longvowels[key]);
+            if (new_spelling) {
+                for (var key in longvowels) {
+                    new_spelling = new_spelling.replace(key, longvowels[key]);
                 }
                 return new_spelling;
 
             }
-            else{
-                return p1+p2;
+            else {
+                return p1 + p2;
             }
         }
 
@@ -258,7 +257,6 @@
             "トゥ": "tu",
 
 
-
             //basic
 
             "ア": "a",
@@ -350,23 +348,20 @@
 
 
         var longvowels = {
-            'a':'ā',
-            'e':'ē',
-            'i':'ī',
-            'o':'ō',
-            'u':'ū'
+            'a': 'ā',
+            'e': 'ē',
+            'i': 'ī',
+            'o': 'ō',
+            'u': 'ū'
         }
-
-
 
 
         var result = syllabary;
 
 
+        result = result.replace(/(.|..)(ー)/g, longVowelsReplacer);
 
-        result = result.replace(/(.|..)(ー)/g,longVowelsReplacer);
-
-        for (var index in dics){
+        for (var index in dics) {
             for (var s in dics[index]) {
                 result = replaceAll(s, dics[index][s], result);
 
@@ -374,18 +369,14 @@
         }
 
 
-
         return result;
 
     }
 
 
-    if (exports){
+    if (exports) {
         exports.convert = romaji.convert;
     }
-
-
-
 
 
 }).call(this);
