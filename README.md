@@ -22,4 +22,4 @@ OR
 
 ### Usage
 
-    romaji.convert('kana');
+    romaji.fromKana(kana);
