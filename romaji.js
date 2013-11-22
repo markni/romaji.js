@@ -364,30 +364,9 @@
             return str.replace(new RegExp(find, 'g'), replace);
         }
 
-        var longVowelsReplacer = function (match, p1, p2, offset, string) {
-            //could be easier if just hardcoded into dictionary....
-            var new_spelling;
-            //ex. replace cha with chā
-            if (dics.katakana[p1]) {
-                new_spelling = dics.katakana[p1];
-            }
-            //ex. replace ra with rā
-            else if (p1.length > 1 && dics.katakana[p1.charAt(1)]) {
-                new_spelling = p1.charAt(0) + dics.katakana[p1.charAt(1)];
-            }
-            if (new_spelling) {
-                for (var key in longvowels) {
-                    new_spelling = new_spelling.replace(key, longvowels[key]);
-                }
-                return new_spelling;
-            }
-            else {
-                return p1 + p2;
-            }
+        var longVowelsReplacer = function (match, p1) {
+            return longvowels[p1];
         }
-
-        //replace long vowels first
-        result = result.replace(/(.|..)(ー)/g, longVowelsReplacer);
 
 
         for (var index in dics) {
@@ -396,6 +375,9 @@
 
             }
         }
+
+        //replace long vowels
+        result = result.replace(/([aeiou])(ー)/g, longVowelsReplacer);
 
         //replace the sokuon (doubling)
         result = result.replace(/(ッ|っ)([a-z])/g, "$2$2");
