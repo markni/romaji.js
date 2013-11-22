@@ -397,6 +397,9 @@
             }
         }
 
+        //replace the sokuon (doubling)
+        result = result.replace(/(ッ|っ)([a-z])/g, "$2$2");
+
 
         return result;
 

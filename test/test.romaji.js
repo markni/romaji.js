@@ -31,6 +31,11 @@ describe('romaji.js', function(){
             assert.equal(romaji.convert('いムー'),'imū');
 
         })
+        it('should return the correct doubling for sokuon', function(){
+            assert.equal(romaji.convert('モット'),'motto');
+
+
+        })
     })
 
 })
