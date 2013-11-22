@@ -14,7 +14,8 @@
         romaji = root.romaji = {};
     }
 
-    romaji.version = '0.2.0';
+    romaji.version = '0.2.1';
+    romaji.model = 'hepburn';
 
     romaji.noConflict = function () {
         root.romaji = previousRomaji;
@@ -22,9 +23,13 @@
     }
 
 
-    romaji.convert = function (syllabary) {
+    romaji.toHiragana = function (){
 
-        var result = syllabary;
+    };
+
+    romaji.fromKana = function (kana) {
+
+        var result = kana;
 
         var dics = {};
 
@@ -360,46 +365,33 @@
 
 
         var replaceAll = function (find, replace, str) {
-
             return str.replace(new RegExp(find, 'g'), replace);
         }
 
-        var longVowelsReplacer = function (match, p1, p2, offset, string) {
-            //could be easier if just hardcoded into dictionary....
-            var new_spelling;
-            //ex. replace cha with chā
-            if (dics.katakana[p1]) {
-                new_spelling = dics.katakana[p1];
-            }
-            //ex. replace ra with rā
-            else if (p1.length > 1 && dics.katakana[p1.charAt(1)]) {
-                new_spelling = p1.charAt(0) + dics.katakana[p1.charAt(1)];
-            }
-            if (new_spelling) {
-                for (var key in longvowels) {
-                    new_spelling = new_spelling.replace(key, longvowels[key]);
-                }
-                return new_spelling;
-            }
-            else {
-                return p1 + p2;
-            }
+        var longVowelsReplacer = function (match, p1) {
+            return longvowels[p1];
         }
 
-        //replace long vowels first
-        result = result.replace(/(.|..)(ー)/g, longVowelsReplacer);
-
-
+        //basic dictionary matching
         for (var index in dics) {
             for (var s in dics[index]) {
                 result = replaceAll(s, dics[index][s], result);
-
             }
         }
 
+        //replace long vowels
+        result = result.replace(/([aeiou])(ー)/g, longVowelsReplacer);
+
+        //replace the sokuon (doubling)
+        result = result.replace(/(ッ|っ)([a-z])/g, "$2$2");
 
         return result;
 
+    }
+
+    romaji.convert = function(s){
+        console.warn('WARNING: romaji.convert() is deprecated, please use romjia.fromKana()');
+        return romaji.fromKana(s);
     }
 
 
