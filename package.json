@@ -1,5 +1,10 @@
 {
-    "name" : "romaji.js",
-    "version" : "0.2.0"
-
+    "name" : "romaji",
+    "version" : "0.2.0",
+    "scripts": {
+        "test": "mocha test"
+    },
+    "dependencies": {
+        "mocha": ">= 1.14.0"
+    }
 }
