@@ -8,7 +8,7 @@
         "js": ["content_script.js"]
     }],
     "background": {
-        "scripts": ["romaji.js","plugin.js"]
+        "scripts": ["romaji.min.js","plugin.js"]
     },
     "manifest_version": 2
 }
