@@ -15,6 +15,7 @@
     }
 
     romaji.version = '0.2.0';
+    romaji.model = 'hepburn';
 
     romaji.noConflict = function () {
         root.romaji = previousRomaji;
@@ -22,7 +23,7 @@
     }
 
 
-    romaji.convert = function (syllabary) {
+    romaji.fromKana = function (syllabary) {
 
         var result = syllabary;
 
@@ -360,7 +361,6 @@
 
 
         var replaceAll = function (find, replace, str) {
-
             return str.replace(new RegExp(find, 'g'), replace);
         }
 
@@ -372,7 +372,6 @@
         for (var index in dics) {
             for (var s in dics[index]) {
                 result = replaceAll(s, dics[index][s], result);
-
             }
         }
 
@@ -384,6 +383,12 @@
 
 
         return result;
+
+    }
+
+    romaji.convert = function(s){
+        console.warn('WARNING: romaji.convert() is deprecated, please use romjia.fromKana()');
+        return romaji.fromKana(s);
 
     }
 

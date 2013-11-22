@@ -11,30 +11,28 @@ describe('romaji.js', function(){
         })
     })
 
-    describe('#convert()', function(){
+    describe('#fromKana()', function(){
         it('should return the correct rōmaji from hiragana', function(){
-            assert.equal(romaji.convert('ふじさん'),'fujisan');
-            assert.equal(romaji.convert('おちゃ'),'ocha');
-            assert.equal(romaji.convert('ちじ'),'chiji');
-            assert.equal(romaji.convert('ちぢむ'),'chijimu');
-            assert.equal(romaji.convert('つづく'),'tsuzuku');
+            assert.equal(romaji.fromKana('ふじさん'),'fujisan');
+            assert.equal(romaji.fromKana('おちゃ'),'ocha');
+            assert.equal(romaji.fromKana('ちじ'),'chiji');
+            assert.equal(romaji.fromKana('ちぢむ'),'chijimu');
+            assert.equal(romaji.fromKana('つづく'),'tsuzuku');
 
         })
         it('should return the correct rōmaji from katakana', function(){
-            assert.equal(romaji.convert('フネカヂモガモ'),'funekajimogamo');
+            assert.equal(romaji.fromKana('フネカヂモガモ'),'funekajimogamo');
 
 
         })
         it('should return the correct long vowels conversion from katakana', function(){
-            assert.equal(romaji.convert('チャーハン'),'chāhan');
-            assert.equal(romaji.convert('ローマ'),'rōma');
-            assert.equal(romaji.convert('いムー'),'imū');
+            assert.equal(romaji.fromKana('チャーハン'),'chāhan');
+            assert.equal(romaji.fromKana('ローマ'),'rōma');
+            assert.equal(romaji.fromKana('いムー'),'imū');
 
         })
         it('should return the correct doubling for sokuon', function(){
-            assert.equal(romaji.convert('モット'),'motto');
-
-
+            assert.equal(romaji.fromKana('モット'),'motto');
         })
     })
 
