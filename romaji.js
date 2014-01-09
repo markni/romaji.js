@@ -108,7 +108,13 @@
 
 
         "うぃ": "wi",
+
+
+        // obsoleted kana
+        "ゑ": "we",
+
         "うぇ": "we",
+
         "うぉ": "wo",
 
         "ゔぁ": "va",
@@ -217,9 +223,6 @@
         "よ": "yo",
 
 
-        // obsoleted kana
-
-        "ゑ": "we",
 
 
 
@@ -242,7 +245,7 @@
         "ミャ": "mya",
         "リャ": "rya",
         "ギャ": "gya",
-        "ジャ": "ja",
+
         "ビャ": "bya",
         "ピャ": "pya",
 
@@ -254,7 +257,7 @@
         "ミュ": "myu",
         "リュ": "ryu",
         "ギュ": "gyu",
-        "ジュ": "ju",
+
         "ビュ": "byu",
         "ピュ": "pyu",
 
@@ -266,32 +269,47 @@
         "ミョ": "myo",
         "リョ": "ryo",
         "ギョ": "gyo",
-        "ジョ": "jo",
+
         "ビョ": "byo",
         "ピョ": "pyo",
+
+		"フュ": "fyu",
+
+		"ツァ": "tsa",
+		"ツィ": "tsi",
+		"ツェ": "tse",
+		"ツォ": "tso",
+
+		"チェ": "che",
+		"シェ": "she",
+
+		"シ": "shi",
+		"チ": "chi",
+		"ツ": "tsu",
+
+		"ジョ": "jo",
+		"ジャ": "ja",
+		"ジュ": "ju",
 
         "ファ": "fa",
         "フィ": "fi",
         "フェ": "fe",
         "フォ": "fo",
-        "フュ": "fyu",
+
 
         "ウィ": "wi",
         "ウェ": "we",
         "ウォ": "wo",
+
+
 
         "ヴァ": "va",
         "ヴィ": "vi",
         "ヴェ": "ve",
         "ヴォ": "vo",
 
-        "ツァ": "tsa",
-        "ツィ": "tsi",
-        "ツェ": "tse",
-        "ツォ": "tso",
 
-        "チェ": "che",
-        "シェ": "she",
+
         "ジェ": "je",
         "ティ": "ti",
         "ディ": "di",
@@ -301,7 +319,7 @@
 
         //basic
 
-        "ア": "a",
+
         "カ": "ka",
         "サ": "sa",
         "タ": "ta",
@@ -310,25 +328,24 @@
         "マ": "ma",
         "ラ": "ra",
 
-        "イ": "i",
+
         "キ": "ki",
-        "シ": "shi",
-        "チ": "chi",
+
         "ニ": "ni",
         "ヒ": "hi",
         "ミ": "mi",
         "リ": "ri",
 
-        "ウ": "u",
+
         "ク": "ku",
         "ス": "su",
-        "ツ": "tsu",
+
         "ヌ": "nu",
         "フ": "fu",
         "ム": "mu",
         "ル": "ru",
 
-        "エ": "e",
+
         "ケ": "ke",
         "セ": "se",
         "テ": "te",
@@ -337,7 +354,7 @@
         "メ": "me",
         "レ": "re",
 
-        "オ": "o",
+
         "コ": "ko",
         "ソ": "so",
         "ト": "to",
@@ -348,7 +365,6 @@
 
         "ワ": "wa",
         "ヲ": "wo",
-        "ン": "n",
 
 
         "ガ": "ga",
@@ -386,13 +402,23 @@
         "ョ": "yo", "ヨ": "yo",
 
 
-        // obsoleted kana
-
-        "ヱ": "we",
-        "ヹ": "ve"
 
 
-    }
+		"ン": "n",
+		"ア": "a",
+		"イ": "i",
+		"ウ": "u",
+		"エ": "e",
+		"オ": "o",
+
+		// obsoleted kana
+
+
+		"ヱ": "we",
+		"ヹ": "ve"
+
+
+	}
 
 
     var longVowelsMap = {
@@ -422,18 +448,35 @@
 
 
     romaji.toHiragana = function (romaji) {
-        var result = romaji;
+        var result = romaji.toLowerCase();
+
+
+        //replace the sokuon (doubling)
+        result = result.replace(/((?![aeiou])[a-z])\1{1}/g,'っ$1')
+
         for (var r in toHiraganaMap) {
             result = replaceAll(r, toHiraganaMap[r], result);
         }
+
+
 
         return result;
 
 
     };
 
-    romaji.toKatakana = function () {
-        console.log('!!');
+    romaji.toKatakana = function (romaji) {
+        var result = romaji.toLowerCase();
+
+
+
+		for (var r in toKatakanaMap) {
+			result = replaceAll(r, toKatakanaMap[r], result);
+		}
+
+
+
+		return result;
 
     };
 
@@ -457,6 +500,7 @@
 
         //replace the sokuon (doubling)
         result = result.replace(/(ッ|っ)([a-z])/g, "$2$2");
+
 
         return result;
 

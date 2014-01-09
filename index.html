@@ -6,13 +6,21 @@
 </head>
 <body>
 
-<input type='text' id="text" value="ローマ" size='100' >
-<button id="convert">fromKana()</button>
+<input type='text' id="test1" value="ローマ" size='100' >
+<button id="fromKana">fromKana(kana)</button>
+
+<input type='text' id="test2" value="tsuzuku" size='100' >
+<button id="toHiragana">toHiragana(romaji)</button>
 
 <script src="romaji.js"></script>
 <script>
-    document.getElementById('convert').onclick = function (){
-             document.getElementById('text').value = romaji.fromKana(document.getElementById('text').value);
+    document.getElementById('fromKana').onclick = function (){
+             document.getElementById('test1').value = romaji.fromKana(document.getElementById('test1').value);
+
+    }
+
+    document.getElementById('toHiragana').onclick = function (){
+        document.getElementById('test2').value = romaji.toHiragana(document.getElementById('test2').value);
 
     }
 

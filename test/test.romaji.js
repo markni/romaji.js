@@ -11,6 +11,7 @@ describe('romaji.js', function () {
         })
     })
 
+
     describe('#fromKana()', function () {
         it('should return the correct rōmaji from hiragana', function () {
             assert.equal(romaji.fromKana('ふじさん'), 'fujisan');
@@ -45,7 +46,20 @@ describe('romaji.js', function () {
             assert.equal(romaji.toHiragana('chiji'),'ちじ');
             assert.equal(romaji.toHiragana('tsuzuku'),'つづく');
         })
+
+        it('should return the correct doubling for sokuon', function () {
+            assert.equal(romaji.toHiragana('suppai'), 'すっぱい');
+        })
     })
+
+
+	describe('#toKakana()',function(){
+		it('should return the correct katakana from rōmaji',function(){
+			assert.equal(romaji.toKatakana('funekajimogamo'), 'フネカヂモガモ');
+
+
+		})
+	})
 
 
 })
