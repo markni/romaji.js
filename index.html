@@ -12,6 +12,9 @@
 <input type='text' id="test2" value="tsuzuku" size='100' >
 <button id="toHiragana">toHiragana(romaji)</button>
 
+<input type='text' id="test3" value="chāhan" size='100' >
+<button id="toKatakana">toKatakana(romaji)</button>
+
 <script src="romaji.js"></script>
 <script>
     document.getElementById('fromKana').onclick = function (){
@@ -23,6 +26,13 @@
         document.getElementById('test2').value = romaji.toHiragana(document.getElementById('test2').value);
 
     }
+
+
+	document.getElementById('toKatakana').onclick = function (){
+		document.getElementById('test3').value = romaji.toKatakana(document.getElementById('test3').value);
+
+	}
+
 
 </script>
 </body>

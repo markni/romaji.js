@@ -433,6 +433,7 @@
     //rebuild map by switching key and value
     var toHiraganaMap = swapJsonKeyValues(toKanaMap.hiragana);
     var toKatakanaMap = swapJsonKeyValues(toKanaMap.katakana);
+	var revLongVowelsMap =  swapJsonKeyValues(longVowelsMap);
 
 
 
@@ -468,6 +469,12 @@
     romaji.toKatakana = function (romaji) {
         var result = romaji.toLowerCase();
 
+		var revlongVowelsReplacer = function(match,p1){
+			return revLongVowelsMap[p1]+'ー';
+		}
+
+
+		result = result.replace(/([āēīōū])/g, revlongVowelsReplacer);
 
 
 		for (var r in toKatakanaMap) {

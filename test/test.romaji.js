@@ -59,6 +59,13 @@ describe('romaji.js', function () {
 
 
 		})
+
+		it('should return the correct katakana for rōmaji contains long vowels',function(){
+			assert.equal(romaji.toKatakana('chāhan'), 'チャーハン');
+			assert.equal(romaji.toKatakana('rōma'), 'ローマ');
+
+
+		})
 	})
 
 
