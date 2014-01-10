@@ -1,6 +1,6 @@
 romaj.js
 =============
-A small browser/nodejs javascript library that converts japanese kana into romaji.  Currently supports Hepburn system only.
+JavaScript utility that makes conversion between Japanese romaji and kana.  Currently supports Hepburn system only.
 
 
 ### Install
@@ -10,16 +10,19 @@ A small browser/nodejs javascript library that converts japanese kana into romaj
 
 ### Test
 
-Simply run
-
+    npm install -g mocha
     npm test
 
-OR
 
-    npm install -g mocha
-    mocha test`
+### Build
+	npm install -g uglify-js
+	npm build
 
 
 ### Usage
 
-    romaji.fromKana(kana);
+    romaji.fromKana('ローマ');   //return 'rōma'
+
+    romaji.toHiragana('tsuzuku');    // return 'つづく'
+
+    romaji.toKatakana('chāhan');  //return 'チャーハン'
