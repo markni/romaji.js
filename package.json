@@ -1,10 +1,22 @@
 {
     "name" : "romaji",
-    "version" : "0.2.1",
+	"description" : "JavaScript utility that makes conversion between Japanese romaji and kana.",
+	"main"          : "romaji.js",
+	"version" : "0.2.2",
+	"license"       : "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/xna2/romaji.js.git"
+	},
+
+	"devDependencies": {
+		"mocha": "1.14.0",
+		"uglify-js" : "2.4.8"
+	},
     "scripts": {
-        "test": "mocha test"
-    },
-    "dependencies": {
-        "mocha": ">= 1.14.0"
+        "test": "mocha test",
+		"build": "uglifyjs romaji.js --mangle --source-map romaji-min.map -o romaji-min.js"
     }
+
+
 }
