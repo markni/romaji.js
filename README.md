@@ -16,7 +16,7 @@ JavaScript utility that makes conversion between Japanese romaji and kana.  Curr
 
 ### Build
 	npm install -g uglify-js
-	npm build
+	npm run-script build
 
 
 ### Usage
