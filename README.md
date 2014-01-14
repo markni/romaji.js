@@ -5,7 +5,14 @@ JavaScript utility that makes conversion between Japanese romaji and kana.  Curr
 
 ### Install
 
-    npm install
+Using `npm`
+
+    npm install romaji
+
+Using `bower`
+
+    bower install romaji	
+
 
 
 ### Test
