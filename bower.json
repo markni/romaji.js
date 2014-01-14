@@ -1,0 +1,26 @@
+{
+  "name": "romaji.js",
+  "main": "romaji.js",
+  "version": "0.0.2",
+  "homepage": "https://github.com/xna2/romajiJS",
+  "authors": [
+    "Mark Ni <xixian.ni@gmail.com>"
+  ],
+  "description": "JavaScript utility that makes conversion between Japanese romaji and kana.",
+  "keywords": [
+    "japanese",
+    "romaji",
+    "hiragana",
+    "katakana"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+	"chrome",
+	""
+  ]
+}
