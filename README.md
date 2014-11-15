@@ -1,4 +1,4 @@
-romaji.js ![](https://travis-ci.org/xna2/romaji.js.svg?branch=master)
+romaji.js ![](https://travis-ci.org/markni/romaji.js.svg?branch=master)
 =============
 JavaScript utility that makes conversion between Japanese romaji and kana.  Currently supports Hepburn system only.
 
