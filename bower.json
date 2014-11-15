@@ -1,8 +1,8 @@
 {
   "name": "romaji",
   "main": "romaji.js",
-  "version": "0.2.2",
-  "homepage": "https://github.com/xna2/romajiJS",
+  "version": "0.2.21",
+  "homepage": "https://github.com/markni/romajiJS",
   "authors": [
     "Mark Ni <xixian.ni@gmail.com>"
   ],
